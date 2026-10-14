@@ -14,7 +14,9 @@
 
 ## B. Log Prompt Mentah
 
-- [2026-10-15 HH:MM] "<teks prompt asli>"
-- [2026-10-15 HH:MM] "<teks prompt asli>"
+- [2026-10-15 01.45] "<teks prompt asli>"
+- [2026-10-15 01.45] "<teks prompt asli>"
 
-- [2026-10-15 HH:MM] Mengganti app/layout.tsx sesuai panduan font Quicksand, metadata, dan KidoBot dipasang global.
+- [2026-10-15 01.50] Mengganti app/layout.tsx sesuai panduan font Quicksand, metadata, dan KidoBot dipasang global.
+
+- [2026-10-15 01.52] Mengganti app/page.tsx dengan landing page dari panduan (tanpa prompt AI): navbar, hero, tombol ke /playground, kartu fitur, dan footer.
