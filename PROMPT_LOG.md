@@ -14,5 +14,7 @@
 
 ## B. Log Prompt Mentah
 
-- [YYYY-MM-DD HH:MM] "<teks prompt asli>"
-- [YYYY-MM-DD HH:MM] "<teks prompt asli>"
+- [2026-10-15 HH:MM] "<teks prompt asli>"
+- [2026-10-15 HH:MM] "<teks prompt asli>"
+
+- [2026-10-15 HH:MM] Mengganti app/layout.tsx sesuai panduan font Quicksand, metadata, dan KidoBot dipasang global.
