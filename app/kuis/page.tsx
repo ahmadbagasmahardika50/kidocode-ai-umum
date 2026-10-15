@@ -37,7 +37,12 @@ const QUESTIONS = [
     answer: 0,
     why: "Urutan menentukan jalan robot. Mengubah urutan akan mengubah hasil.",
   },
-
+  {
+    q: "Robot menghadap ke bawah. Blok apa yang membuat robot menghadap ke kiri?",
+    options: ["Belok kanan sekali", "Belok kanan dua kali", "Maju 1 langkah"],
+    answer: 0,
+    why: "Belok kanan memutar robot searah jarum jam. Dari menghadap bawah, satu kali belok kanan membuat robot menghadap ke kiri.",
+  },
 ];
 
 export default function Kuis() {
