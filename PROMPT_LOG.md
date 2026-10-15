@@ -40,3 +40,5 @@
 - [2026-10-15 08.55] Debugging: build gagal karena nama file Confetti tidak cocok dengan import (huruf besar-kecil). Tindakan: rename file dengan git mv dua langkah dan memperbaiki import di PlayClient.tsx. Build lokal sukses, lalu commit dan deploy.
 
 - [2026-10-15 09.04] Upgrade: menambahkan Misi 4 dengan blok Ulang maju 3x (diperluas menjadi tiga blok maju sebelum simulasi), memperbarui label dan warna palet, dan memperbarui penjelasan konsep pengulangan.
+
+- [2026-10-15 09.07] Uji produksi: misi 1 sampai 4 bisa diselesaikan di Vercel (commit befbc74), tombol lanjut misi berfungsi setelah refresh cache. Siap dikumpulkan.
