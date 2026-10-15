@@ -58,3 +58,5 @@
 - [2026-10-15 10.36] "Tambahkan login sederhana dengan username dan PIN 4 angka. Halaman misi dan dashboard hanya bisa diakses setelah masuk."
 
 - [2026-10-15 10.43] "Upgrade login: pisahkan daftar dan masuk, kata sandi disimpan dalam bentuk hash SHA-256, dan progres dipisah per akun."
+
+- [2026-10-16 HH:MM] "Tambahkan misi 6 dengan dua blok ulang. Baterai di kanan bawah, solusi: ulang maju 3x, belok kanan, maju 1 langkah, ambil baterai."
