@@ -65,3 +65,5 @@
 
 - [2026-10-16 15.14] "Tambahkan tombol Keluar dan nama akun di header halaman misi, supaya bisa keluar dari semua halaman yang butuh login."
 - [2026-10-16 15.16] "Tambahkan tombol Reset progres akun ini di dashboard, dengan konfirmasi sebelum menghapus progres akun yang sedang masuk."
+
+- [2026-10-16 15.20] "Tambahkan kartu profil di dashboard: nama akun dan tanggal bergabung. Tanggal bergabung disimpan saat daftar akun."
