@@ -48,3 +48,5 @@
 - [2026-10-15 09.22] "Tambahkan lencana pencapaian di dashboard dan perbesar teks halaman belajar."
 - [2026-10-15 09.22] "Tambahkan dua soal kuis lagi sehingga total lima soal, dengan penjelasan untuk setiap jawaban."
 - [2026-10-15 09.22] "Tambahkan blok Ulang maju 3x dan misi 4 dengan pengulangan."
+
+- [2026-10-15 09.30] "Tambahkan misi 5 dengan urutan belok kanan, maju, ambil baterai. Baterai berada di kiri bawah."
