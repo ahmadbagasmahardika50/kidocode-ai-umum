@@ -23,7 +23,7 @@ export default function Dashboard() {
   useEffect(() => {
     setUser(getUser());
     try {
-      setProgress(JSON.parse(localStorage.getItem("progressKey()") ?? "{}"));
+      setProgress(JSON.parse(localStorage.getItem(progressKey()) ?? "{}"));
     } catch {
       setProgress({});
     }
@@ -36,6 +36,17 @@ export default function Dashboard() {
   const keluar = () => {
     logout();
     router.push("/masuk");
+  };
+
+  // Hapus progres akun yang sedang masuk saja (akun lain tidak terpengaruh).
+  const resetProgres = () => {
+    if (!window.confirm("Hapus semua progres misi untuk akun ini?")) return;
+    try {
+      localStorage.removeItem(progressKey());
+    } catch {
+      // abaikan
+    }
+    setProgress({});
   };
 
   return (
@@ -89,6 +100,13 @@ export default function Dashboard() {
               );
             })}
           </ul>
+
+          <button
+            onClick={resetProgres}
+            className="mt-8 w-full rounded-md border border-red-200 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
+          >
+            Reset progres akun ini
+          </button>
         </aside>
 
         <section className="flex flex-col gap-4 lg:col-span-2">

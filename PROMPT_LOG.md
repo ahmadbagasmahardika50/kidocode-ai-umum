@@ -62,3 +62,5 @@
 - [2026-10-16 15.08] "Tambahkan misi 6 dengan dua blok ulang. Baterai di kanan bawah, solusi: ulang maju 3x, belok kanan, maju 1 langkah, ambil baterai."
 
 - [2026-10-16 15.11] Debugging: build gagal di lib/missions.ts (Expected '}' got '<eof>') karena fungsi simulate tidak tertutup saat menyalin. Tindakan: menimpa seluruh file dengan versi lengkap dan memperbaiki posisi baterai misi 6.
+
+- [2026-10-16 15.14] "Tambahkan tombol Keluar dan nama akun di header halaman misi, supaya bisa keluar dari semua halaman yang butuh login."
