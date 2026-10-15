@@ -60,8 +60,8 @@ export const MISSIONS: Mission[] = [
   {
     id: 6,
     title: "Dua kali ulang",
-    story: "Baterai ada di kanan bawah. Robot perlu maju, berbelok ke bawah, lalu maju lagi. Gunakan dua blok ulang agar urutannya ringkas.",
-    hint: "Robot harus maju sampai ujung kanan, lalu berbelok ke bawah, lalu maju satu kotak. Ulang maju 3x bisa menghemat blok.",
+    story: "Baterai ada di kanan tengah. Robot harus maju sampai ujung kanan, lalu berbelok ke bawah, lalu maju satu kotak.",
+    hint: "Ulang maju 3x bisa menghemat blok. Setelah sampai ujung kanan, robot perlu belok kanan dan maju satu kali.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 1 },
   },
@@ -69,8 +69,7 @@ export const MISSIONS: Mission[] = [
 
 export type Frame = { x: number; y: number; dir: Dir; msg?: string; won?: boolean };
 
-// Blok ulang diperluas dulu: "ulang" = 3x maju. Misi 6 memakai dua ulang dengan jumlah berbeda
-// lewat blok "ulang" berikutnya, sehingga jumlahnya tetap bisa dihitung sebelum simulasi.
+// Blok ulang diperluas menjadi tiga blok maju sebelum simulasi.
 function expand(blocks: BlockType[]): BlockType[] {
   const out: BlockType[] = [];
   for (const b of blocks) {
@@ -114,4 +113,10 @@ export function simulate(blocks: BlockType[], m: Mission): Frame[] {
           ? "Robot berhasil mengambil baterai."
           : "Baterai belum ditemukan. Coba susun ulang blok.",
       });
-      return
+      return frames;
+    }
+  }
+
+  frames.push({ x, y, dir, msg: "Program selesai, tetapi robot belum mengambil baterai." });
+  return frames;
+}
