@@ -12,6 +12,7 @@ export type Mission = {
   title: string;
   story: string;
   hint: string;
+  praise: string;
   start: Pos;
   battery: Pos;
 };
@@ -22,6 +23,7 @@ export const MISSIONS: Mission[] = [
     title: "Jalan lurus",
     story: "Baterai berada di ujung kanan atas. Robot hanya perlu berjalan lurus lalu mengambil baterai.",
     hint: "Robot menghadap ke kanan. Berapa kali robot harus maju?",
+    praise: "Hebat! Kamu sudah mengerti urutan langkah pertama.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 0 },
   },
@@ -30,6 +32,7 @@ export const MISSIONS: Mission[] = [
     title: "Belok sekali",
     story: "Baterai ada di kiri bawah. Robot harus berbelok sebelum bisa maju ke sana.",
     hint: "Robot menghadap ke kanan. Arah mana yang harus dihadapi agar robot turun?",
+    praise: "Keren! Kamu sudah paham cara membelokkan robot.",
     start: { x: 0, y: 0 },
     battery: { x: 0, y: 2 },
   },
@@ -38,6 +41,7 @@ export const MISSIONS: Mission[] = [
     title: "Belok dua kali",
     story: "Baterai ada di tengah bawah. Robot perlu berjalan, berbelok, lalu berjalan lagi.",
     hint: "Pikirkan dulu jalan ke kanan, lalu kapan robot harus berbelok ke bawah.",
+    praise: "Luar biasa! Kamu bisa menyusun langkah yang berurutan.",
     start: { x: 0, y: 0 },
     battery: { x: 2, y: 2 },
   },
@@ -46,6 +50,7 @@ export const MISSIONS: Mission[] = [
     title: "Pakai pengulangan",
     story: "Baterai ada di kanan bawah. Jalan ke kanan cukup panjang, jadi gunakan blok ulang agar urutannya lebih ringkas.",
     hint: "Blok Ulang maju 3x melakukan tiga langkah maju sekaligus. Setelah itu, robot perlu berbelok ke bawah.",
+    praise: "Mantap! Pengulangan membuat urutanmu lebih ringkas.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 2 },
   },
@@ -54,6 +59,7 @@ export const MISSIONS: Mission[] = [
     title: "Turun lalu ambil",
     story: "Baterai ada di kiri bawah. Robot harus berbelok ke bawah, lalu mengambil baterai.",
     hint: "Robot menghadap ke kanan. Arah mana yang harus dihadapi agar robot bisa turun?",
+    praise: "Bagus sekali! Kamu sudah menyelesaikan misi yang lebih panjang.",
     start: { x: 0, y: 0 },
     battery: { x: 0, y: 1 },
   },
@@ -62,6 +68,7 @@ export const MISSIONS: Mission[] = [
     title: "Dua kali ulang",
     story: "Baterai ada di kanan tengah. Robot harus maju sampai ujung kanan, lalu berbelok ke bawah, lalu maju satu kotak.",
     hint: "Ulang maju 3x bisa menghemat blok. Setelah sampai ujung kanan, robot perlu belok kanan dan maju satu kali.",
+    praise: "Selamat! Kamu menyelesaikan semua misi robot kucing.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 1 },
   },

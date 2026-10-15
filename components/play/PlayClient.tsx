@@ -199,7 +199,8 @@ export default function PlayClient({ mission }: { mission: Mission }) {
           {done && (
             <div className="anim-pop rounded-lg border border-teal-200 bg-teal-50 p-6">
               <h3 className="font-bold text-teal-800">Misi selesai</h3>
-              <p className="mt-1 text-sm text-slate-700">Progres kamu sudah tersimpan.</p>
+              <p className="mt-1 text-sm text-slate-700">{mission.praise}</p>
+              <p className="mt-1 text-xs text-slate-500">Progres kamu sudah tersimpan.</p>
               <Link
                 href={nextMission ? `/playground/${nextMission.id}` : "/dashboard"}
                 className="mt-4 inline-block rounded-md bg-teal-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
