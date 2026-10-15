@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { saveQuizScore } from "@/lib/quiz";
 
 const QUESTIONS = [
   {
@@ -89,6 +90,9 @@ export default function Kuis() {
 
   const next = () => {
     if (index + 1 >= QUESTIONS.length) {
+      // Simpan skor akhir ke akun yang sedang masuk (atau ke browser jika belum masuk).
+      const finalScore = picked !== null && picked === q.answer ? score : score;
+      saveQuizScore(finalScore, QUESTIONS.length);
       setFinished(true);
       return;
     }
@@ -124,7 +128,7 @@ export default function Kuis() {
             <p className="mt-3 text-slate-600">
               {score === QUESTIONS.length
                 ? "Semua jawaban benar. Lanjut ke misi berikutnya."
-                : "Coba baca lagi konsepnya, lalu ulangi kuis."}
+                : "Skor ini sudah tersimpan di dashboard. Coba ulangi kuis untuk skor yang lebih baik."}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <button

@@ -71,3 +71,7 @@
 - [2026-10-16 15.24] "Tambahkan pesan selamat unik untuk setiap misi yang tampil setelah misi selesai."
 
 - [2026-10-16 15.51] "Tambahkan transisi halaman dan efek tekan tombol yang halus lewat CSS, dengan dukungan reduce motion."
+
+- [2026-10-16 15.53] "Tambahkan soal kuis sampai total sepuluh soal dengan penjelasan untuk setiap jawaban."
+
+- [2026-10-16 15.55] "Perbarui docs.md dan README.md agar sesuai dengan fitur saat ini: enam misi, akun, kuis sepuluh soal, dan batasan yang diketahui."

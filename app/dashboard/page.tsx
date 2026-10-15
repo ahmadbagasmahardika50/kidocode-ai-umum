@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MISSIONS } from "@/lib/missions";
 import { getAccountInfo, logout, progressKey } from "@/lib/auth";
+import { getTextBig, setTextBig } from "@/lib/prefs";
+import { readQuizScore } from "@/lib/quiz";
 
 type Progress = Record<string, boolean>;
 
@@ -17,11 +19,15 @@ export default function Dashboard() {
   const router = useRouter();
   const [progress, setProgress] = useState<Progress>({});
   const [info, setInfo] = useState<{ username: string; createdAt: string } | null>(null);
+  const [quiz, setQuiz] = useState<{ score: number; total: number } | null>(null);
+  const [big, setBig] = useState(false);
 
-  // Baca progres dan info akun yang tersimpan di browser
+  // Baca progres, profil, skor kuis, dan pengaturan teks yang tersimpan
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setInfo(getAccountInfo());
+    setQuiz(readQuizScore());
+    setBig(getTextBig());
     try {
       setProgress(JSON.parse(localStorage.getItem(progressKey()) ?? "{}"));
     } catch {
@@ -39,13 +45,20 @@ export default function Dashboard() {
   };
 
   const resetProgres = () => {
-    if (!window.confirm("Hapus semua progres misi untuk akun ini?")) return;
+    if (!window.confirm("Hapus semua progres misi dan skor kuis untuk akun ini?")) return;
     try {
       localStorage.removeItem(progressKey());
     } catch {
       // abaikan
     }
     setProgress({});
+    setQuiz(null);
+  };
+
+  const toggleBig = () => {
+    const next = !big;
+    setBig(next);
+    setTextBig(next);
   };
 
   return (
@@ -89,6 +102,11 @@ export default function Dashboard() {
               />
             </div>
 
+            <h3 className="mt-8 text-sm font-bold">Kuis terakhir</h3>
+            <p className="mt-2 text-sm text-slate-700">
+              {quiz ? `Skor ${quiz.score} dari ${quiz.total}` : "Belum pernah mengerjakan kuis."}
+            </p>
+
             <h3 className="mt-8 text-sm font-bold">Lencana</h3>
             <ul className="mt-3 grid gap-3">
               {BADGES.map((b) => {
@@ -109,9 +127,17 @@ export default function Dashboard() {
               })}
             </ul>
 
+            <h3 className="mt-8 text-sm font-bold">Tampilan</h3>
+            <button
+              onClick={toggleBig}
+              className="mt-3 w-full rounded-md border border-slate-300 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+            >
+              Teks besar: {big ? "Aktif" : "Nonaktif"}
+            </button>
+
             <button
               onClick={resetProgres}
-              className="mt-8 w-full rounded-md border border-red-200 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
+              className="mt-4 w-full rounded-md border border-red-200 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
             >
               Reset progres akun ini
             </button>
