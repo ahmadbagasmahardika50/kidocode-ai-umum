@@ -64,3 +64,4 @@
 - [2026-10-16 15.11] Debugging: build gagal di lib/missions.ts (Expected '}' got '<eof>') karena fungsi simulate tidak tertutup saat menyalin. Tindakan: menimpa seluruh file dengan versi lengkap dan memperbaiki posisi baterai misi 6.
 
 - [2026-10-16 15.14] "Tambahkan tombol Keluar dan nama akun di header halaman misi, supaya bisa keluar dari semua halaman yang butuh login."
+- [2026-10-16 15.16] "Tambahkan tombol Reset progres akun ini di dashboard, dengan konfirmasi sebelum menghapus progres akun yang sedang masuk."
