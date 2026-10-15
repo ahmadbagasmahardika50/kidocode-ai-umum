@@ -21,6 +21,23 @@ const QUESTIONS = [
     answer: 1,
     why: "Blok maju tidak boleh keluar area. Robot akan menabrak dinding.",
   },
+  {
+    q: "Blok Ulang maju 3x sama dengan urutan blok apa?",
+    options: ["Maju, belok, maju", "Maju, maju, maju", "Ambil baterai, maju, maju"],
+    answer: 1,
+    why: "Blok Ulang maju 3x menjalankan blok maju tiga kali berturut-turut.",
+  },
+  {
+    q: "Mengapa urutan blok penting?",
+    options: [
+      "Karena robot selalu menjalankan blok dari atas ke bawah",
+      "Karena blok tidak bisa diubah",
+      "Karena robot hanya bisa berjalan ke kiri",
+    ],
+    answer: 0,
+    why: "Urutan menentukan jalan robot. Mengubah urutan akan mengubah hasil.",
+  },
+
 ];
 
 export default function Kuis() {
