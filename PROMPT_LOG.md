@@ -52,3 +52,5 @@
 - [2026-10-15 09.30] "Tambahkan misi 5 dengan urutan belok kanan, maju, ambil baterai. Baterai berada di kiri bawah."
 
 - [2026-10-15 09.37] "Tambahkan soal kuis ke-6 tentang arah robot setelah belok kanan dari posisi menghadap bawah."
+
+- [2026-10-15 10.32] "Tambahkan login sederhana dengan username dan PIN 4 angka. Halaman misi dan dashboard hanya bisa diakses setelah masuk."

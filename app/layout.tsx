@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import KidoBot from "@/components/bot/KidoBot";
+import AuthGuard from "@/components/auth/AuthGuard";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${quicksand.className} antialiased bg-white text-slate-900`}>
-        {children}
+        <AuthGuard>{children}</AuthGuard>
         <KidoBot />
       </body>
     </html>

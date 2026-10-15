@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MISSIONS } from "@/lib/missions";
+import { getUser, logout } from "@/lib/auth";
 
 type Progress = Record<string, boolean>;
 
@@ -12,11 +14,14 @@ const BADGES = [
 ];
 
 export default function Dashboard() {
+  const router = useRouter();
   const [progress, setProgress] = useState<Progress>({});
+  const [user, setUser] = useState<string | null>(null);
 
-  // Baca progres yang disimpan oleh playground
+  // Baca progres dan nama user yang tersimpan di browser
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
+    setUser(getUser());
     try {
       setProgress(JSON.parse(localStorage.getItem("kido-progress") ?? "{}"));
     } catch {
@@ -28,6 +33,11 @@ export default function Dashboard() {
   const done = MISSIONS.filter((m) => progress[`misi${m.id}`]).length;
   const percent = Math.round((done / MISSIONS.length) * 100);
 
+  const keluar = () => {
+    logout();
+    router.push("/masuk");
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b border-slate-200 bg-white">
@@ -35,10 +45,14 @@ export default function Dashboard() {
           <Link href="/" className="text-lg font-bold tracking-tight">
             KidoCode
           </Link>
-          <nav className="flex gap-5 text-sm font-semibold text-slate-600">
+          <div className="flex items-center gap-5 text-sm font-semibold text-slate-600">
             <Link href="/belajar" className="hover:text-slate-900">Belajar</Link>
             <Link href="/kuis" className="hover:text-slate-900">Kuis</Link>
-          </nav>
+            {user && <span className="text-slate-900">Halo, {user}</span>}
+            <button onClick={keluar} className="text-red-600 hover:text-red-800">
+              Keluar
+            </button>
+          </div>
         </div>
       </header>
 
