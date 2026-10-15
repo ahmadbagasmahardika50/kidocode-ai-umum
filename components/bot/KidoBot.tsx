@@ -31,9 +31,15 @@ export default function KidoBot() {
         body: JSON.stringify({ messages: next.slice(1) }),
       });
       const data = await res.json();
-      setMessages((prev) => [...prev, { role: "model", text: data.reply ?? "Maaf, coba lagi ya! 😴" }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "model", text: data.reply ?? "Coba tanya lagi ya! 😺" },
+      ]);
     } catch {
-      setMessages((prev) => [...prev, { role: "model", text: "Koneksi terputus. Coba lagi ya! 📡" }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "model", text: "Koneksi terputus. Coba lagi ya! 📡" },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -42,7 +48,7 @@ export default function KidoBot() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="w-[340px] h-[450px] flex flex-col mb-4 overflow-hidden bg-white/95 backdrop-blur-xl border border-sky-100 rounded-3xl shadow-2xl">
+        <div className="w-[340px] h-[450px] flex flex-col mb-4 overflow-hidden bg-white border border-sky-100 rounded-3xl shadow-2xl">
           <div className="bg-sky-500 text-white p-4 flex justify-between items-center">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl">🤖</div>
@@ -65,14 +71,18 @@ export default function KidoBot() {
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
                   className={`p-3 max-w-[80%] text-sm font-semibold leading-relaxed shadow-sm rounded-2xl ${
-                    m.role === "user" ? "bg-sky-500 text-white" : "bg-white text-slate-700 border border-slate-100"
+                    m.role === "user"
+                      ? "bg-sky-500 text-white"
+                      : "bg-white text-slate-800 border border-slate-200"
                   }`}
                 >
                   {m.text}
                 </div>
               </div>
             ))}
-            {loading && <p className="text-xs text-slate-400 font-semibold animate-pulse">KidoBot sedang berpikir... 🤔</p>}
+            {loading && (
+              <p className="text-xs text-slate-500 font-semibold animate-pulse">KidoBot sedang berpikir... 🤔</p>
+            )}
             <div ref={endRef} />
           </div>
 
@@ -83,11 +93,12 @@ export default function KidoBot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
               placeholder="Ketik pertanyaanmu..."
-              className="flex-1 bg-slate-100 rounded-xl px-3 py-2 text-sm font-semibold outline-none focus:ring-2 focus:ring-sky-300"
+              className="flex-1 bg-white border-2 border-sky-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 placeholder:text-slate-400 outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
             />
             <button
               onClick={send}
               disabled={loading}
+              aria-label="Kirim"
               className="bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white w-10 h-10 rounded-xl font-bold"
             >
               ➤

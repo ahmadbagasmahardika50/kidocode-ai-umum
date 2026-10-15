@@ -24,3 +24,7 @@
 - [2026-10-15 01.56] "Buatkan app/playground/page.tsx sebagai misi 1 KidoCode: grid 4x3, robot kucing mulai di kiri atas menghadap kanan, baterai di kanan atas. Ada blok Maju 1 Langkah, Belok Kanan, dan Ambil Baterai. Jalankan urutan blok langkah demi langkah dengan jeda, tangani robot yang menabrak dinding, dan simpan progres ke localStorage jika berhasil. Gunakan Tailwind dan React state."
 
 - [2026-10-15 07.01] Memastikan app/page.tsx berisi landing page (cek head -3), server dev berjalan, dan route /api/kidobot merespons 200. Menguji playground, dashboard, dan KidoBot secara lokal.
+
+- [2026-10-15 07.25 ] Memeriksa deployment produksi (commit 5b13503). GEMINI_API_KEY sudah tersimpan di Environment Variables. Melakukan Redeploy dan memeriksa log KidoBot.
+
+- [2026-10-15 07.28] Debugging: KidoBot selalu menampilkan "sedang sibuk" di produksi. Tindakan: route /api/kidobot diubah agar memakai petunjuk lokal sebagai fallback saat Gemini gagal, lalu di-deploy ulang.
