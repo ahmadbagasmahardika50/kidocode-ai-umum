@@ -56,3 +56,5 @@
 - [2026-10-15 10.32] "Tambahkan login sederhana dengan username dan PIN 4 angka. Halaman misi dan dashboard hanya bisa diakses setelah masuk."
 
 - [2026-10-15 10.36] "Tambahkan login sederhana dengan username dan PIN 4 angka. Halaman misi dan dashboard hanya bisa diakses setelah masuk."
+
+- [2026-10-15 10.43] "Upgrade login: pisahkan daftar dan masuk, kata sandi disimpan dalam bentuk hash SHA-256, dan progres dipisah per akun."

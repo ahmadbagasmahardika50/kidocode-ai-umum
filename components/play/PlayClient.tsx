@@ -11,6 +11,7 @@ import {
   type Mission,
 } from "@/lib/missions";
 import Confetti from "@/components/play/Confetti";
+import { progressKey } from "@/lib/auth";
 
 type Block = { id: number; type: BlockType };
 
@@ -55,7 +56,7 @@ export default function PlayClient({ mission }: { mission: Mission }) {
     if (last.won) {
       setDone(true);
       try {
-        const saved = JSON.parse(localStorage.getItem("kido-progress") ?? "{}");
+        const saved = JSON.parse(localStorage.getItem("progressKey()") ?? "{}");
         localStorage.setItem(
           "kido-progress",
           JSON.stringify({ ...saved, [`misi${mission.id}`]: true })

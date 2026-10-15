@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MISSIONS } from "@/lib/missions";
-import { getUser, logout } from "@/lib/auth";
+import { getUser, logout, progressKey } from "@/lib/auth";
 
 type Progress = Record<string, boolean>;
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
   useEffect(() => {
     setUser(getUser());
     try {
-      setProgress(JSON.parse(localStorage.getItem("kido-progress") ?? "{}"));
+      setProgress(JSON.parse(localStorage.getItem("progressKey()") ?? "{}"));
     } catch {
       setProgress({});
     }
