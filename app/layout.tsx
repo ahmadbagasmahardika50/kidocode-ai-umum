@@ -11,7 +11,7 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   title: "KidoCode AI - Belajar Logika Coding untuk Anak SD",
   description:
-    "Platform belajar logika coding interaktif untuk anak SD dengan asisten AI KidoBot.",
+    "Platform belajar logika coding interaktif untuk anak SD dengan asisten KidoBot.",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id">
-      <body className={`${quicksand.className} antialiased bg-sky-50 text-slate-800`}>
+      <body className={`${quicksand.className} antialiased bg-white text-slate-900`}>
         {children}
         <KidoBot />
       </body>

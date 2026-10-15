@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-const SYSTEM_PROMPT = `Kamu adalah KidoBot, robot kucing yang ramah untuk anak SD kelas 4-6 di platform belajar coding KidoCode AI.
+const SYSTEM_PROMPT = `Kamu adalah KidoBot, asisten belajar logika coding untuk anak SD kelas 4-6 di platform KidoCode.
 Aturan:
-- Jawab dalam bahasa Indonesia yang sederhana, maksimal 3 kalimat pendek, boleh pakai emoji.
+- Jawab dalam bahasa Indonesia yang sederhana, maksimal 3 kalimat pendek, tanpa emoji.
 - Jangan pernah memberi jawaban langsung untuk urutan blok misi. Beri petunjuk bertahap berupa pertanyaan pancingan.
-- Fokus pada konsep logika: langkah, urutan, belok, dan perulangan.
+- Fokus pada konsep logika: langkah, urutan, belok, dan pengambilan objek.
 - Jika pertanyaan di luar belajar coding, arahkan kembali dengan sopan.
 - Jangan meminta atau menyimpan data pribadi anak.`;
 
@@ -17,18 +17,18 @@ type IncomingMessage = { role: "user" | "model"; text: string };
 function localHint(text: string): string {
   const t = text.toLowerCase();
   if (t.includes("baterai") || t.includes("ambil")) {
-    return "Coba pikirkan dulu: robot harus berada di mana sebelum bisa mengambil baterai? 🔋";
+    return "Coba pikirkan dulu: robot harus berada di mana sebelum bisa mengambil baterai?";
   }
   if (t.includes("maju") || t.includes("langkah")) {
-    return "Robot mulai menghadap kanan. Berapa kali robot harus maju supaya sampai ke baterai? 🐱";
+    return "Robot mulai menghadap ke kanan. Berapa kali robot harus maju agar sampai ke baterai?";
   }
   if (t.includes("belok")) {
-    return "Belok kanan membuat robot berubah arah. Apakah robot perlu berbelok di misi ini? 🤔";
+    return "Belok kanan membuat robot berubah arah. Apakah robot perlu berbelok di misi ini?";
   }
   if (t.includes("halo") || t.includes("hai") || t.includes("hallo")) {
-    return "Halo juga! Ada blok yang bikin bingung? Tanya aku tentang maju, belok, atau baterai ya! 😺";
+    return "Halo! Ada blok yang membingungkan? Tanyakan tentang maju, belok, atau baterai.";
   }
-  return "Coba perhatikan petunjuk di sebelah kiri layar, lalu susun blok pelan-pelan ya! 💪";
+  return "Perhatikan petunjuk di sebelah kiri layar, lalu susun blok perlahan.";
 }
 
 export async function POST(req: Request) {
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ reply: "Pesanmu belum terbaca. Coba kirim lagi ya! 🙏" });
+    return NextResponse.json({ reply: "Pesanmu belum terbaca. Coba kirim lagi." });
   }
 
   const recent = (body.messages ?? []).slice(-10);
@@ -44,7 +44,6 @@ export async function POST(req: Request) {
   const fallback = () => NextResponse.json({ reply: localHint(lastUser) });
 
   // Key diambil dari environment variable di server, tidak pernah ke browser.
-  // Nilai key harus dipersiapkan di Vercel (Settings → Environment Variables).
   const apiKey = process.env.GEMINI_API_KEY?.trim();
   if (!apiKey) return fallback();
 
@@ -71,7 +70,6 @@ export async function POST(req: Request) {
     });
 
     if (!res.ok) {
-      // Catat status untuk dilihat di Vercel Logs (tanpa menampilkan key).
       console.error("Gemini error status:", res.status);
       return fallback();
     }

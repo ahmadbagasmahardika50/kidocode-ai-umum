@@ -8,7 +8,7 @@ export default function KidoBot() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "model", text: "Halo kawan! Aku KidoBot 🤖. Ada yang bingung? Tanya aku ya!" },
+    { role: "model", text: "Halo! Aku KidoBot. Ada bagian yang membingungkan? Tanyakan saja." },
   ]);
   const endRef = useRef<HTMLDivElement>(null);
 
@@ -33,12 +33,12 @@ export default function KidoBot() {
       const data = await res.json();
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: data.reply ?? "Coba tanya lagi ya! 😺" },
+        { role: "model", text: data.reply ?? "Coba tanyakan lagi." },
       ]);
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: "Koneksi terputus. Coba lagi ya! 📡" },
+        { role: "model", text: "Koneksi terputus. Coba lagi sebentar." },
       ]);
     } finally {
       setLoading(false);
@@ -48,60 +48,54 @@ export default function KidoBot() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="w-[340px] h-[450px] flex flex-col mb-4 overflow-hidden bg-white border border-sky-100 rounded-3xl shadow-2xl">
-          <div className="bg-sky-500 text-white p-4 flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl">🤖</div>
-              <div>
-                <h3 className="font-bold text-sm">KidoBot</h3>
-                <p className="text-xs text-sky-100">Teman belajarmu</p>
-              </div>
+        <div className="mb-4 flex h-[450px] w-[340px] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
+          <div className="flex items-center justify-between bg-slate-900 p-4 text-white">
+            <div>
+              <h3 className="text-sm font-bold">KidoBot</h3>
+              <p className="text-xs text-slate-300">Asisten belajar</p>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Tutup KidoBot"
-              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30"
+              className="rounded-md px-2 py-1 text-sm text-slate-300 hover:bg-white/10 hover:text-white"
             >
-              ✕
+              Tutup
             </button>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 bg-slate-50">
+          <div className="flex flex-1 flex-col gap-3 overflow-y-auto bg-slate-50 p-4">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`p-3 max-w-[80%] text-sm font-semibold leading-relaxed shadow-sm rounded-2xl ${
+                  className={`max-w-[80%] rounded-lg px-3 py-2 text-sm leading-relaxed ${
                     m.role === "user"
-                      ? "bg-sky-500 text-white"
-                      : "bg-white text-slate-800 border border-slate-200"
+                      ? "bg-slate-900 text-white"
+                      : "border border-slate-200 bg-white text-slate-800"
                   }`}
                 >
                   {m.text}
                 </div>
               </div>
             ))}
-            {loading && (
-              <p className="text-xs text-slate-500 font-semibold animate-pulse">KidoBot sedang berpikir... 🤔</p>
-            )}
+            {loading && <p className="text-xs text-slate-500">KidoBot sedang menulis...</p>}
             <div ref={endRef} />
           </div>
 
-          <div className="p-3 bg-white border-t border-slate-100 flex gap-2">
+          <div className="flex gap-2 border-t border-slate-200 bg-white p-3">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
-              placeholder="Ketik pertanyaanmu..."
-              className="flex-1 bg-white border-2 border-sky-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 placeholder:text-slate-400 outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+              placeholder="Tulis pertanyaanmu"
+              className="flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
             />
             <button
               onClick={send}
               disabled={loading}
-              aria-label="Kirim"
-              className="bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white w-10 h-10 rounded-xl font-bold"
+              className="rounded-md bg-teal-700 px-4 text-sm font-semibold text-white transition-colors hover:bg-teal-800 disabled:opacity-50"
             >
-              ➤
+              Kirim
             </button>
           </div>
         </div>
@@ -111,9 +105,9 @@ export default function KidoBot() {
         <button
           onClick={() => setOpen(true)}
           aria-label="Buka KidoBot"
-          className="bg-sky-500 text-white w-16 h-16 rounded-full shadow-[0_8px_0_rgb(2,132,199)] hover:-translate-y-1 active:translate-y-1 transition-all text-3xl border-2 border-white"
+          className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-slate-700"
         >
-          🤖
+          KidoBot
         </button>
       )}
     </div>
