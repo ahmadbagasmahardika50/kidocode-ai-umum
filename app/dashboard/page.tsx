@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MISSIONS } from "@/lib/missions";
-import { getUser, logout, progressKey } from "@/lib/auth";
+import { getAccountInfo, logout, progressKey } from "@/lib/auth";
 
 type Progress = Record<string, boolean>;
 
@@ -16,12 +16,12 @@ const BADGES = [
 export default function Dashboard() {
   const router = useRouter();
   const [progress, setProgress] = useState<Progress>({});
-  const [user, setUser] = useState<string | null>(null);
+  const [info, setInfo] = useState<{ username: string; createdAt: string } | null>(null);
 
-  // Baca progres dan nama user yang tersimpan di browser
+  // Baca progres dan info akun yang tersimpan di browser
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    setUser(getUser());
+    setInfo(getAccountInfo());
     try {
       setProgress(JSON.parse(localStorage.getItem(progressKey()) ?? "{}"));
     } catch {
@@ -38,7 +38,6 @@ export default function Dashboard() {
     router.push("/masuk");
   };
 
-  // Hapus progres akun yang sedang masuk saja (akun lain tidak terpengaruh).
   const resetProgres = () => {
     if (!window.confirm("Hapus semua progres misi untuk akun ini?")) return;
     try {
@@ -59,7 +58,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-5 text-sm font-semibold text-slate-600">
             <Link href="/belajar" className="hover:text-slate-900">Belajar</Link>
             <Link href="/kuis" className="hover:text-slate-900">Kuis</Link>
-            {user && <span className="text-slate-900">Halo, {user}</span>}
+            {info && <span className="text-slate-900">Halo, {info.username}</span>}
             <button onClick={keluar} className="text-red-600 hover:text-red-800">
               Keluar
             </button>
@@ -68,45 +67,55 @@ export default function Dashboard() {
       </header>
 
       <main className="mx-auto grid max-w-5xl gap-8 px-6 py-10 lg:grid-cols-3">
-        <aside className="anim-fade-up h-fit rounded-lg border border-slate-200 bg-white p-6">
-          <h2 className="font-bold">Progres kamu</h2>
-          <p className="mt-3 text-3xl font-bold">
-            {done}/{MISSIONS.length}
-          </p>
-          <p className="text-sm text-slate-600">misi selesai</p>
-          <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
-            <div
-              className="h-2 rounded-full bg-teal-600 transition-all duration-700"
-              style={{ width: `${percent}%` }}
-            />
+        <aside className="anim-fade-up h-fit space-y-6">
+          <div className="rounded-lg border border-slate-200 bg-white p-6">
+            <p className="text-sm font-semibold text-slate-500">Profil</p>
+            <p className="mt-1 text-xl font-bold">{info?.username ?? "-"}</p>
+            <p className="mt-2 text-sm text-slate-600">
+              Bergabung: {info?.createdAt ?? "-"}
+            </p>
           </div>
 
-          <h3 className="mt-8 text-sm font-bold">Lencana</h3>
-          <ul className="mt-3 grid gap-3">
-            {BADGES.map((b) => {
-              const earned = done >= b.need;
-              return (
-                <li
-                  key={b.title}
-                  className={`rounded-md border p-3 transition-colors ${
-                    earned ? "border-teal-200 bg-teal-50" : "border-slate-200 bg-slate-50 opacity-60"
-                  }`}
-                >
-                  <p className={`text-sm font-semibold ${earned ? "text-teal-800" : "text-slate-500"}`}>
-                    {b.title}
-                  </p>
-                  <p className="text-xs text-slate-600">{b.desc}</p>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="rounded-lg border border-slate-200 bg-white p-6">
+            <h2 className="font-bold">Progres kamu</h2>
+            <p className="mt-3 text-3xl font-bold">
+              {done}/{MISSIONS.length}
+            </p>
+            <p className="text-sm text-slate-600">misi selesai</p>
+            <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+              <div
+                className="h-2 rounded-full bg-teal-600 transition-all duration-700"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
 
-          <button
-            onClick={resetProgres}
-            className="mt-8 w-full rounded-md border border-red-200 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
-          >
-            Reset progres akun ini
-          </button>
+            <h3 className="mt-8 text-sm font-bold">Lencana</h3>
+            <ul className="mt-3 grid gap-3">
+              {BADGES.map((b) => {
+                const earned = done >= b.need;
+                return (
+                  <li
+                    key={b.title}
+                    className={`rounded-md border p-3 transition-colors ${
+                      earned ? "border-teal-200 bg-teal-50" : "border-slate-200 bg-slate-50 opacity-60"
+                    }`}
+                  >
+                    <p className={`text-sm font-semibold ${earned ? "text-teal-800" : "text-slate-500"}`}>
+                      {b.title}
+                    </p>
+                    <p className="text-xs text-slate-600">{b.desc}</p>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <button
+              onClick={resetProgres}
+              className="mt-8 w-full rounded-md border border-red-200 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
+            >
+              Reset progres akun ini
+            </button>
+          </div>
         </aside>
 
         <section className="flex flex-col gap-4 lg:col-span-2">

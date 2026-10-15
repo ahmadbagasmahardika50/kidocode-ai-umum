@@ -1,7 +1,8 @@
 const ACCOUNTS_KEY = "kido-accounts-v2";
 const SESSION_KEY = "kido-user";
 
-type Accounts = Record<string, { hash: string }>;
+type Account = { hash: string; createdAt?: string };
+type Accounts = Record<string, Account>;
 
 function readAccounts(): Accounts {
   try {
@@ -39,7 +40,14 @@ export async function register(
     if (accounts[username]) {
       return { ok: false, error: "Username sudah dipakai. Silakan masuk." };
     }
-    accounts[username] = { hash: await hashPassword(username, password) };
+    accounts[username] = {
+      hash: await hashPassword(username, password),
+      createdAt: new Date().toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    };
     localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
     localStorage.setItem(SESSION_KEY, username);
     return { ok: true };
@@ -80,6 +88,14 @@ export function getUser(): string | null {
   } catch {
     return null;
   }
+}
+
+// Info akun yang sedang masuk (nama dan tanggal daftar).
+export function getAccountInfo(): { username: string; createdAt: string } | null {
+  const u = getUser();
+  if (!u) return null;
+  const acc = readAccounts()[u];
+  return { username: u, createdAt: acc?.createdAt ?? "belum tercatat" };
 }
 
 export function logout() {
