@@ -20,3 +20,5 @@
 - [2026-10-15 01.50] Mengganti app/layout.tsx sesuai panduan font Quicksand, metadata, dan KidoBot dipasang global.
 
 - [2026-10-15 01.52] Mengganti app/page.tsx dengan landing page dari panduan (tanpa prompt AI): navbar, hero, tombol ke /playground, kartu fitur, dan footer.
+
+- [2026-10-15 01.56] "Buatkan app/playground/page.tsx sebagai misi 1 KidoCode: grid 4x3, robot kucing mulai di kiri atas menghadap kanan, baterai di kanan atas. Ada blok Maju 1 Langkah, Belok Kanan, dan Ambil Baterai. Jalankan urutan blok langkah demi langkah dengan jeda, tangani robot yang menabrak dinding, dan simpan progres ke localStorage jika berhasil. Gunakan Tailwind dan React state."
