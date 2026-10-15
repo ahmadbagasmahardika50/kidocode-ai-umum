@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Animasi masuk */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
@@ -26,13 +27,43 @@
   40% { opacity: 1; transform: translateY(-3px); }
 }
 
+/* Transisi halaman: setiap halaman naik perlahan saat dibuka */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .anim-fade-up { animation: fade-up 0.5s ease-out both; }
 .anim-pop { animation: pop 0.45s ease-out both; }
 .anim-float { animation: float 3s ease-in-out infinite; }
 .confetti-piece { animation: confetti-fall 1.8s ease-in forwards; }
 .typing-dot { animation: typing-dot 1.2s infinite; }
 
+main {
+  animation: page-in 0.45s ease-out both;
+}
+
+/* Tombol: sentuhan halus saat ditekan */
+button:not(:disabled),
+a[href] {
+  transition-property: color, background-color, border-color, transform, box-shadow, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .anim-fade-up, .anim-pop, .anim-float, .typing-dot { animation: none; }
-  .confetti-piece { display: none; }
+  .anim-fade-up,
+  .anim-pop,
+  .anim-float,
+  .typing-dot,
+  main {
+    animation: none;
+  }
+  .confetti-piece {
+    display: none;
+  }
 }
