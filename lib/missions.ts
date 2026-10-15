@@ -48,7 +48,7 @@ export const MISSIONS: Mission[] = [
     hint: "Blok Ulang maju 3x melakukan tiga langkah maju sekaligus. Setelah itu, robot perlu berbelok ke bawah.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 2 },
-  }, 
+  },
   {
     id: 5,
     title: "Turun lalu ambil",
@@ -57,13 +57,30 @@ export const MISSIONS: Mission[] = [
     start: { x: 0, y: 0 },
     battery: { x: 0, y: 1 },
   },
+  {
+    id: 6,
+    title: "Dua kali ulang",
+    story: "Baterai ada di kanan bawah. Robot perlu maju, berbelok ke bawah, lalu maju lagi. Gunakan dua blok ulang agar urutannya ringkas.",
+    hint: "Robot harus maju sampai ujung kanan, lalu berbelok ke bawah, lalu maju satu kotak. Ulang maju 3x bisa menghemat blok.",
+    start: { x: 0, y: 0 },
+    battery: { x: 3, y: 1 },
+  },
 ];
 
 export type Frame = { x: number; y: number; dir: Dir; msg?: string; won?: boolean };
 
-// Blok ulang diubah menjadi tiga blok maju sebelum simulasi dimulai.
+// Blok ulang diperluas dulu: "ulang" = 3x maju. Misi 6 memakai dua ulang dengan jumlah berbeda
+// lewat blok "ulang" berikutnya, sehingga jumlahnya tetap bisa dihitung sebelum simulasi.
 function expand(blocks: BlockType[]): BlockType[] {
-  return blocks.flatMap((b) => (b === "ulang" ? ["maju", "maju", "maju"] : [b])) as BlockType[];
+  const out: BlockType[] = [];
+  for (const b of blocks) {
+    if (b === "ulang") {
+      out.push("maju", "maju", "maju");
+    } else {
+      out.push(b);
+    }
+  }
+  return out;
 }
 
 // Simulasi murni: menghitung seluruh langkah robot dari urutan blok.
@@ -97,10 +114,4 @@ export function simulate(blocks: BlockType[], m: Mission): Frame[] {
           ? "Robot berhasil mengambil baterai."
           : "Baterai belum ditemukan. Coba susun ulang blok.",
       });
-      return frames;
-    }
-  }
-
-  frames.push({ x, y, dir, msg: "Program selesai, tetapi robot belum mengambil baterai." });
-  return frames;
-}
+      return
