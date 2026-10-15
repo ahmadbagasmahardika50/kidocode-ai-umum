@@ -48,6 +48,14 @@ export const MISSIONS: Mission[] = [
     hint: "Blok Ulang maju 3x melakukan tiga langkah maju sekaligus. Setelah itu, robot perlu berbelok ke bawah.",
     start: { x: 0, y: 0 },
     battery: { x: 3, y: 2 },
+  }, 
+  {
+    id: 5,
+    title: "Turun lalu ambil",
+    story: "Baterai ada di kiri bawah. Robot harus berbelok ke bawah, lalu mengambil baterai.",
+    hint: "Robot menghadap ke kanan. Arah mana yang harus dihadapi agar robot bisa turun?",
+    start: { x: 0, y: 0 },
+    battery: { x: 0, y: 1 },
   },
 ];
 
