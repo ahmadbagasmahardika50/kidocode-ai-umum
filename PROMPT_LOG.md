@@ -34,3 +34,5 @@
 - [2026-10-15 07.51] Revisi visual: menghapus emoji dekoratif dari seluruh antarmuka dan pesan KidoBot, mengganti palet menjadi netral dengan aksen teal, dan menyederhanakan tombol dan kartu. Logika game dan KidoBot tidak diubah.
 
 - [2026-10-15 07.59] Upgrade: menambahkan animasi (fade-up, pop, transisi posisi robot), tiga misi dengan rute /playground/[id], halaman belajar konsep dasar, kuis tiga soal, dan dashboard per misi.
+
+- [2026-10-15 08.11] Debugging: build Vercel gagal pada /playground/[id] karena prerender membaca params saat build. Tindakan: menambahkan generateStaticParams yang mengembalikan id misi 1 sampai 3.

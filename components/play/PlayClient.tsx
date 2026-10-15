@@ -10,6 +10,7 @@ import {
   type Frame,
   type Mission,
 } from "@/lib/missions";
+import Confetti from "@/components/play/Confetti";
 
 type Block = { id: number; type: BlockType };
 
@@ -107,6 +108,8 @@ export default function PlayClient({ mission }: { mission: Mission }) {
       </header>
 
       <main className="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 lg:grid-cols-3">
+        {done && <Confetti />}
+
         <section className="flex flex-col gap-6">
           <div className="anim-fade-up rounded-lg border border-slate-200 bg-white p-6">
             <h2 className="text-lg font-bold">Robot kehabisan tenaga</h2>

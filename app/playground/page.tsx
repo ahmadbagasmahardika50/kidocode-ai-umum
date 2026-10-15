@@ -15,16 +15,18 @@ export default function PlaygroundIndex() {
       </header>
 
       <main className="mx-auto max-w-3xl px-6 py-10">
-        <h1 className="text-2xl font-bold">Misi Robot Kucing</h1>
-        <p className="mt-2 text-slate-600">Selesaikan misi satu per satu. Setiap misi menambah satu konsep baru.</p>
+        <h1 className="anim-fade-up text-2xl font-bold">Misi Robot Kucing</h1>
+        <p className="anim-fade-up mt-2 text-slate-600" style={{ animationDelay: "80ms" }}>
+          Selesaikan misi satu per satu. Setiap misi menambah satu konsep baru.
+        </p>
 
         <div className="mt-8 grid gap-4">
           {MISSIONS.map((m, i) => (
             <Link
               key={m.id}
               href={`/playground/${m.id}`}
-              style={{ animationDelay: `${i * 100}ms` }}
-              className="anim-fade-up rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-teal-600"
+              style={{ animationDelay: `${i * 100 + 160}ms` }}
+              className="anim-fade-up rounded-lg border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-teal-600 hover:shadow-lg"
             >
               <p className="text-sm font-semibold text-teal-700">Misi {m.id}</p>
               <h2 className="mt-1 text-lg font-bold">{m.title}</h2>

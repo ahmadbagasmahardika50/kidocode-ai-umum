@@ -77,7 +77,14 @@ export default function KidoBot() {
                 </div>
               </div>
             ))}
-            {loading && <p className="text-xs text-slate-500">KidoBot sedang menulis...</p>}
+
+            {loading && (
+              <div className="flex w-fit gap-1 rounded-lg border border-slate-200 bg-white px-3 py-3">
+                <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-500" />
+                <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-500" style={{ animationDelay: "150ms" }} />
+                <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-500" style={{ animationDelay: "300ms" }} />
+              </div>
+            )}
             <div ref={endRef} />
           </div>
 
