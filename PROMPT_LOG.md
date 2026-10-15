@@ -42,3 +42,5 @@
 - [2026-10-15 09.04] Upgrade: menambahkan Misi 4 dengan blok Ulang maju 3x (diperluas menjadi tiga blok maju sebelum simulasi), memperbarui label dan warna palet, dan memperbarui penjelasan konsep pengulangan.
 
 - [2026-10-15 09.07] Uji produksi: misi 1 sampai 4 bisa diselesaikan di Vercel (commit befbc74), tombol lanjut misi berfungsi setelah refresh cache. Siap dikumpulkan.
+
+- [2026-10-15 09.12] Upgrade kecil: lencana pencapaian di dashboard dan ukuran teks halaman belajar diperbesar. Build lokal sukses, dideploy ke Vercel.

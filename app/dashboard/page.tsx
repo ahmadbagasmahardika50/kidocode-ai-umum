@@ -5,6 +5,12 @@ import { MISSIONS } from "@/lib/missions";
 
 type Progress = Record<string, boolean>;
 
+const BADGES = [
+  { need: 1, title: "Pemula", desc: "Menyelesaikan 1 misi" },
+  { need: 3, title: "Pemecah masalah", desc: "Menyelesaikan 3 misi" },
+  { need: 4, title: "Master robot", desc: "Menyelesaikan semua misi" },
+];
+
 export default function Dashboard() {
   const [progress, setProgress] = useState<Progress>({});
 
@@ -49,6 +55,26 @@ export default function Dashboard() {
               style={{ width: `${percent}%` }}
             />
           </div>
+
+          <h3 className="mt-8 text-sm font-bold">Lencana</h3>
+          <ul className="mt-3 grid gap-3">
+            {BADGES.map((b) => {
+              const earned = done >= b.need;
+              return (
+                <li
+                  key={b.title}
+                  className={`rounded-md border p-3 transition-colors ${
+                    earned ? "border-teal-200 bg-teal-50" : "border-slate-200 bg-slate-50 opacity-60"
+                  }`}
+                >
+                  <p className={`text-sm font-semibold ${earned ? "text-teal-800" : "text-slate-500"}`}>
+                    {b.title}
+                  </p>
+                  <p className="text-xs text-slate-600">{b.desc}</p>
+                </li>
+              );
+            })}
+          </ul>
         </aside>
 
         <section className="flex flex-col gap-4 lg:col-span-2">
