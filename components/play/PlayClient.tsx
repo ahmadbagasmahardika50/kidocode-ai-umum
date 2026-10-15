@@ -18,11 +18,13 @@ const LABEL: Record<BlockType, string> = {
   maju: "Maju 1 langkah",
   belok: "Belok kanan",
   ambil: "Ambil baterai",
+  ulang: "Ulang maju 3x",
 };
 const ACCENT: Record<BlockType, string> = {
   maju: "border-l-slate-900",
   belok: "border-l-teal-600",
   ambil: "border-l-amber-500",
+  ulang: "border-l-violet-500",
 };
 
 export default function PlayClient({ mission }: { mission: Mission }) {

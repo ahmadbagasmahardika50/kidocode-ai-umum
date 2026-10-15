@@ -36,3 +36,7 @@
 - [2026-10-15 07.59] Upgrade: menambahkan animasi (fade-up, pop, transisi posisi robot), tiga misi dengan rute /playground/[id], halaman belajar konsep dasar, kuis tiga soal, dan dashboard per misi.
 
 - [2026-10-15 08.11] Debugging: build Vercel gagal pada /playground/[id] karena prerender membaca params saat build. Tindakan: menambahkan generateStaticParams yang mengembalikan id misi 1 sampai 3.
+
+- [2026-10-15 08.55] Debugging: build gagal karena nama file Confetti tidak cocok dengan import (huruf besar-kecil). Tindakan: rename file dengan git mv dua langkah dan memperbaiki import di PlayClient.tsx. Build lokal sukses, lalu commit dan deploy.
+
+- [2026-10-15 09.04] Upgrade: menambahkan Misi 4 dengan blok Ulang maju 3x (diperluas menjadi tiga blok maju sebelum simulasi), memperbarui label dan warna palet, dan memperbarui penjelasan konsep pengulangan.

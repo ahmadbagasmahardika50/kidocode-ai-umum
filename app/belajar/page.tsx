@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const CONCEPTS = [
   {
-    title: "Urutan",
-    desc: "Perintah dijalankan dari atas ke bawah. Mengubah urutan akan mengubah hasil.",
-    example: "Maju, maju, ambil baterai",
+    title: "Pengulangan",
+    desc: "Mengulang satu aksi beberapa kali. Blok Ulang maju 3x menjalankan maju tiga kali tanpa menyusun tiga blok.",
+    example: "Ulang maju 3x sama dengan maju, maju, maju.",
   },
   {
     title: "Maju",
