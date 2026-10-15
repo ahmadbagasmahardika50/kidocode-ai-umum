@@ -44,3 +44,7 @@
 - [2026-10-15 09.07] Uji produksi: misi 1 sampai 4 bisa diselesaikan di Vercel (commit befbc74), tombol lanjut misi berfungsi setelah refresh cache. Siap dikumpulkan.
 
 - [2026-10-15 09.12] Upgrade kecil: lencana pencapaian di dashboard dan ukuran teks halaman belajar diperbesar. Build lokal sukses, dideploy ke Vercel.
+
+- [2026-10-15 09.22] "Tambahkan lencana pencapaian di dashboard dan perbesar teks halaman belajar."
+- [2026-10-15 09.22] "Tambahkan dua soal kuis lagi sehingga total lima soal, dengan penjelasan untuk setiap jawaban."
+- [2026-10-15 09.22] "Tambahkan blok Ulang maju 3x dan misi 4 dengan pengulangan."
