@@ -75,3 +75,6 @@
 - [2026-10-16 15.53] "Tambahkan soal kuis sampai total sepuluh soal dengan penjelasan untuk setiap jawaban."
 
 - [2026-10-16 15.55] "Perbarui docs.md dan README.md agar sesuai dengan fitur saat ini: enam misi, akun, kuis sepuluh soal, dan batasan yang diketahui."
+
+- [2026-10-16 HH:MM] "Simpan skor kuis per akun dan tampilkan skor kuis terakhir di dashboard."
+- [2026-10-16 HH:MM] "Tambahkan pengaturan teks besar untuk anak di dashboard, disimpan di localStorage dan diterapkan ke seluruh halaman."
