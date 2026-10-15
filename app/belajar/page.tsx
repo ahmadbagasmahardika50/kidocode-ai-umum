@@ -26,6 +26,14 @@ const CONCEPTS = [
     desc: "Mengulang satu aksi beberapa kali. Blok Ulang maju 3x menjalankan maju tiga kali tanpa menyusun tiga blok.",
     example: "Ulang maju 3x sama dengan maju, maju, maju.",
   },
+  {
+    id: 5,
+    title: "Turun lalu ambil",
+    story: "Baterai ada di kiri bawah. Robot harus berbelok ke bawah, lalu mengambil baterai.",
+    hint: "Robot menghadap ke kanan. Arah mana yang harus dihadapi agar robot bisa turun?",
+    start: { x: 0, y: 0 },
+    battery: { x: 0, y: 1 },
+  },
 ];
 
 export default function Belajar() {
