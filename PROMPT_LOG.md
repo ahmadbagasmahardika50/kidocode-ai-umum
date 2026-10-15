@@ -28,3 +28,5 @@
 - [2026-10-15 07.25 ] Memeriksa deployment produksi (commit 5b13503). GEMINI_API_KEY sudah tersimpan di Environment Variables. Melakukan Redeploy dan memeriksa log KidoBot.
 
 - [2026-10-15 07.28] Debugging: KidoBot selalu menampilkan "sedang sibuk" di produksi. Tindakan: route /api/kidobot diubah agar memakai petunjuk lokal sebagai fallback saat Gemini gagal, lalu di-deploy ulang.
+
+- [2026-10-15 07.42] Debugging: model gemini-2.5-flash dan gemini-2.5-flash-lite tidak tersedia (404) untuk akun baru. Tindakan: memakai gemini-3.1-flash-lite yang sudah diuji berhasil dengan curl, lalu memperbarui route KidoBot dan deploy ulang.
