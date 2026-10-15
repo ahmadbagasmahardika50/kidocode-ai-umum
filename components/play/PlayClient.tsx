@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   COLS,
@@ -10,8 +11,8 @@ import {
   type Frame,
   type Mission,
 } from "@/lib/missions";
+import { getUser, logout, progressKey } from "@/lib/auth";
 import Confetti from "@/components/play/Confetti";
-import { progressKey } from "@/lib/auth";
 
 type Block = { id: number; type: BlockType };
 
@@ -29,6 +30,7 @@ const ACCENT: Record<BlockType, string> = {
 };
 
 export default function PlayClient({ mission }: { mission: Mission }) {
+  const router = useRouter();
   const idRef = useRef(0);
   const startFrame: Frame = { x: mission.start.x, y: mission.start.y, dir: 0 };
 
@@ -38,9 +40,17 @@ export default function PlayClient({ mission }: { mission: Mission }) {
   const [running, setRunning] = useState(false);
   const [msg, setMsg] = useState("");
   const [done, setDone] = useState(false);
+  const [user, setUser] = useState<string | null>(null);
 
   const current = view[step] ?? view[0];
   const nextMission = MISSIONS.find((m) => m.id === mission.id + 1);
+
+  // Ambil nama user yang sedang masuk
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    setUser(getUser());
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Animasi langkah demi langkah
   /* eslint-disable react-hooks/set-state-in-effect */
@@ -56,11 +66,9 @@ export default function PlayClient({ mission }: { mission: Mission }) {
     if (last.won) {
       setDone(true);
       try {
-        const saved = JSON.parse(localStorage.getItem("progressKey()") ?? "{}");
-        localStorage.setItem(
-          "kido-progress",
-          JSON.stringify({ ...saved, [`misi${mission.id}`]: true })
-        );
+        const key = progressKey();
+        const saved = JSON.parse(localStorage.getItem(key) ?? "{}");
+        localStorage.setItem(key, JSON.stringify({ ...saved, [`misi${mission.id}`]: true }));
       } catch {
         // localStorage tidak tersedia: abaikan
       }
@@ -95,18 +103,30 @@ export default function PlayClient({ mission }: { mission: Mission }) {
     setBlocks([]);
     reset();
   };
+  const keluar = () => {
+    logout();
+    router.push("/masuk");
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-6">
-          <Link href="/playground" className="text-sm font-semibold text-slate-500 hover:text-slate-900">
-            Semua misi
-          </Link>
-          <span className="h-5 w-px bg-slate-200" />
-          <span className="font-bold">
-            Misi {mission.id}: {mission.title}
-          </span>
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
+          <div className="flex items-center gap-4">
+            <Link href="/playground" className="text-sm font-semibold text-slate-500 hover:text-slate-900">
+              Semua misi
+            </Link>
+            <span className="h-5 w-px bg-slate-200" />
+            <span className="font-bold">
+              Misi {mission.id}: {mission.title}
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-sm font-semibold">
+            {user && <span className="hidden text-slate-600 sm:inline">Halo, {user}</span>}
+            <button onClick={keluar} className="text-red-600 hover:text-red-800">
+              Keluar
+            </button>
+          </div>
         </div>
       </header>
 
