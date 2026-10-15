@@ -43,6 +43,34 @@ const QUESTIONS = [
     answer: 0,
     why: "Belok kanan memutar robot searah jarum jam. Dari menghadap bawah, satu kali belok kanan membuat robot menghadap ke kiri.",
   },
+  {
+    q: "Robot ingin ke kotak di sebelah kanan. Apa yang harus dilakukan terlebih dahulu?",
+    options: ["Belok kanan sampai menghadap kanan", "Ambil baterai", "Ulangi dari awal"],
+    answer: 0,
+    why: "Robot harus menghadap ke arah tujuan sebelum bisa maju ke sana.",
+  },
+  {
+    q: "Blok apa yang paling tepat untuk mengulang langkah maju tiga kali?",
+    options: ["Ulang maju 3x", "Belok kanan", "Ambil baterai"],
+    answer: 0,
+    why: "Blok Ulang maju 3x sudah berisi tiga langkah maju, sehingga urutannya lebih ringkas.",
+  },
+  {
+    q: "Mengapa robot tidak bisa mengambil baterai jika belum sampai di kotaknya?",
+    options: [
+      "Karena baterai hanya bisa diambil dari kotak tempat robot berdiri",
+      "Karena baterai tidak boleh disentuh",
+      "Karena robot harus tidur dulu",
+    ],
+    answer: 0,
+    why: "Aksi ambil baterai hanya berhasil jika robot berada di kotak yang sama dengan baterai.",
+  },
+  {
+    q: "Setelah misi selesai, apa yang disimpan oleh KidoCode?",
+    options: ["Progres misi di akunmu", "Gambar robot", "Nama teman sekelas"],
+    answer: 0,
+    why: "Progres misi disimpan untuk setiap akun, sehingga kamu bisa melanjutkan belajar nanti.",
+  },
 ];
 
 export default function Kuis() {
