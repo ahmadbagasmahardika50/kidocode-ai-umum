@@ -30,20 +30,15 @@ bot/KidoBot.tsx # floating chat
 
 
 ## 5. Fitur yang Harus Dibangun
-1. **Landing page** (`/`): hero, daftar fitur, tombol ke playground dan dashboard.
-2. **Playground Misi 1** (`/playground`):
-   - Grid 4x3, robot mulai di kiri atas menghadap kanan, baterai di kanan atas.
-   - Blok: Maju 1 Langkah, Belok Kanan, Ambil Baterai.
-   - Simulasi langkah demi langkah dengan jeda.
-   - Pesan jika robot menabrak dinding, atau jika baterai belum diambil.
-   - Jika berhasil, progres disimpan di localStorage dengan kunci `kido-progress`.
-3. **Dashboard** (`/dashboard`):
-   - Membaca progres dari localStorage.
-   - Menampilkan misi 1 (aktif atau selesai) dan misi 2 (segera hadir).
-4. **KidoBot** (floating chat, tampil di semua halaman):
-   - Mengirim riwayat chat ke `/api/kidobot`.
-   - Balasan dibuat oleh Gemini dengan sistem prompt anak SD.
-   - Jika API key belum ada, tampilkan pesan ramah, jangan crash.
+## 5. Halaman & Fitur
+1. `/` Beranda: hero dan ringkasan cara belajar, dengan animasi masuk bertahap.
+2. `/belajar` Konsep dasar: urutan, maju, belok, aksi, dan pengulangan (segera hadir).
+3. `/playground` Daftar misi. `/playground/[id]` memainkan misi (3 misi).
+4. `/kuis` Tiga soal pilihan ganda dengan penjelasan.
+5. `/dashboard` Progres per misi, disimpan di localStorage kunci `kido-progress`.
+6. KidoBot: asisten chat di semua halaman, memakai Gemini dengan fallback petunjuk lokal.
+
+Animasi: fade-up saat masuk, pop saat hasil, dan transisi posisi robot. Dinonaktifkan untuk pengguna dengan reduce motion.
 
 ## 6. Aturan AI KidoBot
 - Bahasa Indonesia sederhana, maksimal 3 kalimat pendek.

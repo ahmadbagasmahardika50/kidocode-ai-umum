@@ -32,3 +32,5 @@
 - [2026-10-15 07.42] Debugging: model gemini-2.5-flash dan gemini-2.5-flash-lite tidak tersedia (404) untuk akun baru. Tindakan: memakai gemini-3.1-flash-lite yang sudah diuji berhasil dengan curl, lalu memperbarui route KidoBot dan deploy ulang.
 
 - [2026-10-15 07.51] Revisi visual: menghapus emoji dekoratif dari seluruh antarmuka dan pesan KidoBot, mengganti palet menjadi netral dengan aksen teal, dan menyederhanakan tombol dan kartu. Logika game dan KidoBot tidak diubah.
+
+- [2026-10-15 07.59] Upgrade: menambahkan animasi (fade-up, pop, transisi posisi robot), tiga misi dengan rute /playground/[id], halaman belajar konsep dasar, kuis tiga soal, dan dashboard per misi.
