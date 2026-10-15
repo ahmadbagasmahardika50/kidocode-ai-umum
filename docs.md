@@ -53,11 +53,10 @@ bot/KidoBot.tsx # floating chat
 - Tidak meminta atau menyimpan data pribadi anak.
 
 ## 7. Aturan UI/UX
-- Warna cerah ramah anak: sky, amber, emerald, dengan slate untuk teks dan netral.
-- Teks utama minimal `text-lg` di area belajar. Tombol cukup besar untuk jari anak.
-- Setiap tombol punya efek hover dan active (translate dan shadow 3D).
+- Palet netral: slate untuk teks dan latar, teal sebagai warna aksen.
+- Tidak memakai emoji dekoratif di antarmuka.
+- Tombol dan kartu sederhana dengan batas tipis dan transisi warna saat hover.
 - Layout responsif: satu kolom di mobile, tiga kolom di desktop (playground).
-- Hindari desain dashboard korporat atau template AI generik.
 
 ## 8. Aturan Kode
 - Gunakan React functional components dan hooks.
@@ -77,3 +76,4 @@ bot/KidoBot.tsx # floating chat
 - Dashboard membaca progres yang tersimpan.
 - KidoBot membalas lewat Gemini di local dan Vercel.
 - Website bisa diakses lewat link Vercel dan repo GitHub bersifat publik.
+
